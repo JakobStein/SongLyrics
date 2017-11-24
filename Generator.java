@@ -30,7 +30,7 @@ public class Generator
          setDictionary(contents);
          }
        catch(IOException e) 
-         {}
+         {System.out.println("Please insert text files to project and try again.");}
      
 
 
@@ -46,7 +46,7 @@ public class Generator
        
         seeds.add(words[0]);
         ends.add(words[words.length-1]);
-        System.out.println(sentence);
+        //System.out.println(sentence);
         /** }
         catch(ArrayIndexOutOfBoundsException e)
         {System.out.println("bad" +sentence+"bad");
@@ -80,7 +80,7 @@ public class Generator
     {return ends;}
    
     
-    public void setDictionary(String contents) 
+    private void setDictionary(String contents) 
     {
          
          
@@ -97,18 +97,12 @@ public class Generator
             }
         }
         
-        StringBuilder stringBuild = new StringBuilder();
-         for(String s:lines){
-        if(!s.equals("")){
-         stringBuild.append(s);
-          }
-        }
-        
-        String finalString = stringBuild.toString();
+       
         
         
-        //System.out.println(finalString);
+       
     }
     
     
 }
+
