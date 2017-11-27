@@ -25,9 +25,14 @@ public class Generator
         dictionary = new HashMap<String, ArrayList>();
         seeds = new ArrayList<String>();
         ends = new ArrayList<String>();
+        
         try{
-         String contents = new String(Files.readAllBytes(Paths.get("hallandoats.txt")));
-         setDictionary(contents);
+         String contents1 = new String(Files.readAllBytes(Paths.get("hallandoats.txt")));
+         setDictionary(contents1);
+         String contents2 = new String(Files.readAllBytes(Paths.get("georgemichael.txt")));
+         setDictionary(contents2);
+         String contents3 = new String(Files.readAllBytes(Paths.get("duranduran.txt")));
+         setDictionary(contents3);
          }
        catch(IOException e) 
          {System.out.println("Please insert text files to project and try again.");}
@@ -39,18 +44,14 @@ public class Generator
     
     private void setSentence(String sentence)
     {
-        
+       
         String[] words = sentence.toLowerCase().split(" ");
-        //try{
+        
            
        
         seeds.add(words[0]);
         ends.add(words[words.length-1]);
-        //System.out.println(sentence);
-        /** }
-        catch(ArrayIndexOutOfBoundsException e)
-        {System.out.println("bad" +sentence+"bad");
-        if(sentence.isEmpty()){System.out.println("baad");}}  */
+        
         for(int i=0;i<words.length-1;i++){
         String current = words[i]; 
         String next = words[i+1];
