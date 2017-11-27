@@ -25,18 +25,32 @@ public class Generator
         dictionary = new HashMap<String, ArrayList>();
         seeds = new ArrayList<String>();
         ends = new ArrayList<String>();
+        try{
+         String contents = new String(Files.readAllBytes(Paths.get("hallandoats.txt")));
+         setDictionary(contents);
+         }
+       catch(IOException e) 
+         {System.out.println("Please insert text files to project and try again.");}
      
 
 
     }
 
     
-    public void setSentence(String sentence)
+    private void setSentence(String sentence)
     {
         
         String[] words = sentence.toLowerCase().split(" ");
+        //try{
+           
+       
         seeds.add(words[0]);
-        ends.add(words[-1]);
+        ends.add(words[words.length-1]);
+        //System.out.println(sentence);
+        /** }
+        catch(ArrayIndexOutOfBoundsException e)
+        {System.out.println("bad" +sentence+"bad");
+        if(sentence.isEmpty()){System.out.println("baad");}}  */
         for(int i=0;i<words.length-1;i++){
         String current = words[i]; 
         String next = words[i+1];
@@ -58,51 +72,37 @@ public class Generator
     { return dictionary;
     }
     
+    public ArrayList getSeeds()
+    {return seeds;}
     
+    public ArrayList getEnds()
     
+    {return ends;}
    
     
-    public void setDictionary() throws IOException
+    private void setDictionary(String contents) 
     {
-        String contents = new String(Files.readAllBytes(Paths.get("hallandoats.txt"))); 
+         
          
         String[] lines = contents.split(System.getProperty("line.separator"));
         
         for(String line : lines){
          if(!line.isEmpty()){
-          setSentence(line);
-             System.out.println(line);
+          if(!line.trim().isEmpty())
+             {setSentence(line);
+                }
          }
-         else
+         else 
          { 
             }
         }
         
-        StringBuilder stringBuild = new StringBuilder();
-         for(String s:lines){
-        if(!s.equals("")){
-         stringBuild.append(s);
-          }
-        }
-        
-        String finalString = stringBuild.toString();
+       
         
         
-        //System.out.println(finalString);
+       
     }
     
-    public void testMethod()
-     { try{
-         setDictionary();
-       
-       }
-       catch(IOException e) 
-       {}
-       Set<String> keys = dictionary.keySet();
-       for( String key : keys)
-       {System.out.println(key);}
-       ArrayList<String> values = dictionary.get("i'm");
-       for( String value : values)
-       {System.out.println(value);}
-        }
+    
 }
+
