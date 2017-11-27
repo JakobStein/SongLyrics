@@ -25,18 +25,20 @@ public class Generator
         dictionary = new HashMap<String, ArrayList>();
         seeds = new ArrayList<String>();
         ends = new ArrayList<String>();
-        
+        ArrayList<String> filenames = new ArrayList<String>();
+        filenames.add("hallandoats.txt");
+        filenames.add("georgemichael.txt");
+        filenames.add("duranduran.txt");
+        for (String s : filenames)
+        {
         try{
-         String contents1 = new String(Files.readAllBytes(Paths.get("hallandoats.txt")));
-         setDictionary(contents1);
-         String contents2 = new String(Files.readAllBytes(Paths.get("georgemichael.txt")));
-         setDictionary(contents2);
-         String contents3 = new String(Files.readAllBytes(Paths.get("duranduran.txt")));
-         setDictionary(contents3);
+         String contents = new String(Files.readAllBytes(Paths.get(s)));
+         setDictionary(contents);
+     
          }
        catch(IOException e) 
          {System.out.println("Please insert text files to project and try again.");}
-     
+        }
 
 
     }
@@ -84,7 +86,7 @@ public class Generator
     private void setDictionary(String contents) 
     {
          
-         
+        contents = contents.replaceAll("[(\\?)(\\,)]", "");
         String[] lines = contents.split(System.getProperty("line.separator"));
         
         for(String line : lines){
